@@ -1,0 +1,19 @@
+@app.put("/hotels/{hotel_id}")
+def update_hotel_put(hotel_id: int, hotel_data: HotelPutUpdate):
+    global hotels
+    for hotel in hotels:
+        if hotel["id"] == hotel_id:
+            hotel["title"] = hotel_data.title
+            hotel["name"] = hotel_data.name
+            return hotel
+
+@app.patch("/hotels/{hotel_id}")
+def update_hotel_patch(hotel_id: int, hotel_data: HotelPatchUpdate):
+    global hotels
+    for hotel in hotels:
+        if hotel["id"] == hotel_id:
+            if hotel_data.title is not None:
+                hotel["title"] = hotel_data.title
+            if hotel_data.name is not None:
+                hotel["name"] = hotel_data.name
+            return hotel
